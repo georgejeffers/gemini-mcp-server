@@ -10,7 +10,7 @@ A TypeScript implementation of a Model Context Protocol (MCP) server that integr
 Generates text using Google's Gemini Pro model. This tool provides natural language generation capabilities through the MCP protocol.
 
 Input Schema:
-```json
+```jsonc
 {
   "prompt": "string",  // The text prompt to generate from
   "temperature": "number?", // Optional: Controls randomness (0-1, default: 0.7)
@@ -22,7 +22,7 @@ Input Schema:
 ```
 
 Output Schema:
-```json
+```jsonc
 {
   "text": "string"  // The generated text response
 }

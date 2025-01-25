@@ -1,0 +1,25 @@
+{
+  "name": "gemini-mcp-server",
+  "version": "1.0.0",
+  "description": "A TypeScript implementation of a Model Context Protocol (MCP) server that integrates with Google's Gemini Pro model.",
+  "main": "dist/gemini_mcp_server.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/gemini_mcp_server.js",
+    "dev": "tsc -w",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["mcp", "gemini", "ai", "typescript"],
+  "author": "GeorgeJeffers",
+  "license": "MIT",
+  "dependencies": {
+    "@google/generative-ai": "^0.2.0",
+    "@modelcontextprotocol/sdk": "^1.4.1",
+    "dotenv": "^16.4.5",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.24",
+    "typescript": "^5.3.3"
+  }
+}

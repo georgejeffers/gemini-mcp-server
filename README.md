@@ -7,27 +7,6 @@ A TypeScript implementation of a Model Context Protocol (MCP) server that integr
 ### generate_text
 *From server: gemini*
 
-Generates text using Google's Gemini Pro model. This tool provides natural language generation capabilities through the MCP protocol.
-
-Input Schema:
-```jsonc
-{
-  "prompt": "string",  // The text prompt to generate from
-  "temperature": "number?", // Optional: Controls randomness (0-1, default: 0.7)
-  "maxOutputTokens": "number?", // Optional: Maximum output length (1-8192, default: 8192)
-  "topK": "number?", // Optional: Top-k sampling parameter (1-40)
-  "topP": "number?", // Optional: Top-p sampling parameter (0-1)
-  "stream": "boolean?" // Optional: Enable streaming response (default: false)
-}
-```
-
-Output Schema:
-```jsonc
-{
-  "text": "string"  // The generated text response
-}
-```
-
 ## Prerequisites
 
 - Node.js 18 or higher
@@ -48,15 +27,9 @@ cd gemini-mcp-server
 npm install
 ```
 
-3. Create a `.env` file with your Google API key:
-```bash
-GOOGLE_API_KEY=your_api_key_here
-```
-
-4. Build and start the server:
+4. Build:
 ```bash
 npm run build
-npm start
 ```
 
 ## Claude Desktop Integration

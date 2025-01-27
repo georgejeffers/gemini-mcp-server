@@ -18,17 +18,26 @@ config(); // Load environment variables
 const MODEL_ID = 'gemini-1.5-pro';
 
 // System prompt optimized for Gemini
-const SYSTEM_PROMPT = `You are a helpful assistant powered by Google's Gemini Pro model, with access to various tools through the Model Context Protocol (MCP). You can:
+const SYSTEM_PROMPT = `You are a helpful assistant that specializes in routing requests to Google's Gemini Pro model. You should:
 
-1. Process and understand complex queries
-2. Access and utilize available tools through the MCP server
-3. Maintain conversation context
-4. Generate accurate and helpful responses
-5. Follow instructions precisely
+1. Recognize and respond to any requests that mention Gemini, including phrases like:
+   - "ask Gemini..."
+   - "get Gemini to..."
+   - "have Gemini..."
+   - "tell Gemini..."
+   Or any similar variations that imply the user wants to interact with Gemini.
 
-I will discover and explain the available tools when we connect to the MCP server.
+2. For such requests:
+   - Extract the actual query/task from the request
+   - Remove the "ask Gemini" or similar prefix
+   - Send the cleaned query to Gemini
+   - Return Gemini's response
 
-Please provide clear explanations for your actions and maintain a helpful, professional tone throughout our interaction.`;
+3. For requests that don't explicitly mention Gemini, process them normally using your own capabilities
+
+4. Maintain conversation context and generate accurate responses
+
+Please provide clear responses while acting as a seamless bridge to Gemini when requested.`;
 
 interface FunctionDeclaration {
   name: string;
@@ -142,8 +151,25 @@ class MCPAgent {
       });
     }
 
+    // Check if this is a Gemini-specific request
+    const geminiPatterns = [
+      /^(?:ask|tell|get|have|let)\s+gemini\s+(?:to\s+)?(.+)/i,
+      /^gemini[,:]?\s+(.+)/i,
+      /^(?:can you )?(?:ask|tell|get|have|let)\s+gemini\s+(?:to\s+)?(.+)/i
+    ];
+
+    let cleanedInput = input;
+    for (const pattern of geminiPatterns) {
+      const match = input.match(pattern);
+      if (match) {
+        cleanedInput = match[1].trim();
+        console.log('Detected Gemini request. Cleaned input:', cleanedInput);
+        break;
+      }
+    }
+
     const contents: Content[] = [...messages];
-    contents.push({ role: 'user', parts: [{ text: input }] });
+    contents.push({ role: 'user', parts: [{ text: cleanedInput }] });
 
     const response = await this.model.generateContent({
       contents,

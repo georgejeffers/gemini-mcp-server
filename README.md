@@ -2,6 +2,10 @@
 
 A TypeScript implementation of a Model Context Protocol (MCP) server that integrates with Google's Gemini Pro model.
 
+<a href="https://glama.ai/mcp/servers/ejwvacw7s0">
+  <img width="380" height="200" src="https://glama.ai/mcp/servers/ejwvacw7s0/badge" alt="Gemini Server MCP server" />
+</a>
+
 ## MCP Tools
 
 ### generate_text

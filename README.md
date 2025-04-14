@@ -1,5 +1,7 @@
 # gemini-mcp-server
 
+[![smithery badge](https://smithery.ai/badge/@georgejeffers/gemini-mcp-server)](https://smithery.ai/server/@georgejeffers/gemini-mcp-server)
+
 A TypeScript implementation of a Model Context Protocol (MCP) server that integrates with Google's Gemini Pro model.
 
 ## MCP Tools
@@ -16,6 +18,15 @@ A TypeScript implementation of a Model Context Protocol (MCP) server that integr
 
 ## Installation
 
+### Installing via Smithery
+
+To install Gemini MCP Server for Claude Desktop automatically via [Smithery](https://smithery.ai/server/@georgejeffers/gemini-mcp-server):
+
+```bash
+npx -y @smithery/cli install @georgejeffers/gemini-mcp-server --client claude
+```
+
+### Manual Installation
 1. Clone the repository:
 ```bash
 git clone https://github.com/GeorgeJeffers/gemini-mcp-server.git
